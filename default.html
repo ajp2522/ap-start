@@ -10,13 +10,13 @@
     <title>AJP Start1</title>
 </head>
 
-<body>
+<body onload="startUp()">
     <h1>AJP Start</h1>
 
 <div class="container text-center">
   <div class="row">
     <div class="col">
-      <p>News/Weather</p>
+      <h3>News/Weather</h3>
       <a href="http://news.google.com" target="_blank" class="btn btn-primary" role="button">G News</a>
       <a href="https://www.bbc.co.uk/news" target="_blank" class="btn btn-primary" role="button">BBC</a>
       <a href="https://weather.metoffice.gov.uk/forecast/u10spmgj1#?nearestTo=CT5%20(United%20Kingdom)" 
@@ -24,19 +24,56 @@
         
     </div>
     <div class="col">
-      <p>Dev</p>
+      <h3>Dev</h3>
       <a href="http://github.com" target="_blank" class="btn btn-primary" role="button">GHub</a>
       <a href="https://ajp2522.atlassian.net/jira/software/projects/APK/boards/170" 
         target="_blank" class="btn btn-primary" role="button">Jira AP-S</a>
       
     </div>
     <div class="col">
-      <p>Gaming/Streaming</p>
+      <h3>Gaming/Streaming</h3>
       <a href="http://twitch.tv" target="_blank" class="btn btn-primary" role="button">Twitch</a>
       <a href="http://music.youtube.com" target="_blank" class="btn btn-primary" role="button">YTM</a>
     </div>
   </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col"></div>
+    <div class="col">
+      <p></p>
+      <p></p>
+      <h4>Current Time</h4>
+      <div id="timeLN">LN</div>
+      <div id="timeNY">NY</div>
+      <div id="timeTK">TK</div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function startUp() {
+    // Initial update
+    updateTime();
+    // Update the page elements every 30 secs
+    setInterval(updateTime, 30000);
+  }
+
+  function updateTime() {
+    console.log("updateTime running");
+    const now = new Date(); // current time
+
+    // Get current time in London/NY/Tokyo, update the page
+    const timeNow = new Date();
+    const timeLondon = timeNow.toLocaleString("en-GB", { timeZone: "Europe/London" });
+    document.getElementById("timeLN").innerHTML = "LN: " + timeLondon;
+
+    const timeNY = timeNow.toLocaleString("en-GB", { timeZone: "America/New_York" });
+    document.getElementById("timeNY").innerHTML = "NY: " + timeNY;
+
+    const timeTK = timeNow.toLocaleString("en-GB", { timeZone: "Asia/Tokyo" });
+    document.getElementById("timeTK").innerHTML = "TK: " + timeTK;
+  }
+</script>
 
 </body>
 </html>
