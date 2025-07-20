@@ -10,7 +10,7 @@
     <title>AJP Start1</title>
 </head>
 
-<body onload="updateTime()">
+<body onload="startUp()">
     <h1>AJP Start</h1>
 
 <div class="container text-center">
@@ -51,22 +51,27 @@
 </div>
 
 <script>
+  function startUp() {
+    // Initial update
+    updateTime();
+    // Update the page elements every 30 secs
+    setInterval(updateTime, 30000);
+  }
+
   function updateTime() {
     console.log("updateTime running");
     const now = new Date(); // current time
 
     // Get current time in London/NY/Tokyo, update the page
-    const timeLondon = new Date().toLocaleString("en-GB", { timeZone: "Europe/London" });
-    console.log(timeLondon);
+    const timeNow = new Date();
+    const timeLondon = timeNow.toLocaleString("en-GB", { timeZone: "Europe/London" });
     document.getElementById("timeLN").innerHTML = "LN: " + timeLondon;
 
-    const timeNY = new Date().toLocaleString("en-GB", { timeZone: "America/New_York" });
-    console.log(timeNY);
+    const timeNY = timeNow.toLocaleString("en-GB", { timeZone: "America/New_York" });
     document.getElementById("timeNY").innerHTML = "NY: " + timeNY;
 
-    const timeTK = new Date().toLocaleString("en-GB", { timeZone: "Asia/Tokyo" });
+    const timeTK = timeNow.toLocaleString("en-GB", { timeZone: "Asia/Tokyo" });
     document.getElementById("timeTK").innerHTML = "TK: " + timeTK;
-
   }
 </script>
 
